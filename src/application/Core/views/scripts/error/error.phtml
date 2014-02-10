@@ -1,0 +1,7 @@
+<h1>Erreur</h1>
+<h2><?= $this->exception->getMessage()?></h2>
+<?php if (APP_ENV == 'development') : ?>
+    <pre>
+        <?php print_r($this->exception)?>
+    </pre>
+<?php endif;?>

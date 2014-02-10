@@ -1,0 +1,10 @@
+{
+  "name" : "site1jb",
+  "require" : {
+    "zendframework/zendframework1" : "=1.12.3"
+  },
+  "repositories" : [ {
+    "type" : "composer",
+    "url" : "https://packagist.org/"
+  } ]
+}

@@ -1,0 +1,19 @@
+<?php 
+$this->headTitle('Accueil');
+$this->headMeta()->appendName('description', "Page d'accueil");
+?>
+
+Index
+
+<br />
+<a href="<?= $this->url(array(), 'contactIndex') ?>">Nous contacter</a>
+<br /><br />
+<?php foreach( $this->articles as $article) :?>
+<div class="article">
+    <h2><?= $article->getArticleTitle()?></h2>
+    <h3>Par <?= $article->getAuthor()->getAuthorName()?></h3>
+    <div class="articleContent">
+    <?= $article->getArticleContent()?>
+    </div>
+</div>
+<?php endforeach;?>
