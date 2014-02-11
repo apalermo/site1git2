@@ -27,7 +27,18 @@
           <a class="navbar-brand" href="#">Project name</a>
         </div>
         <div class="navbar-collapse collapse">
+            <?php 
+                $auth = Zend_Auth::getInstance();
+                if($auth->hasIdentity()){
+                    $userAuth = $auth->getIdentity();
+                }else{
+                    $userAuth = new Core_Model_User();
+                    $userAuth->setRoleId(Core_Model_User::GUEST);
+                }
+            ?>
           <?= $this->navigation()
+                   ->setAcl(Zend_Registry::get('Zend_Acl'))
+                   ->setRole($userAuth)
                    ->menu()
                    ->setUlClass('nav navbar-nav')
       ?>

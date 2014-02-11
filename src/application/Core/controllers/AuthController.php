@@ -33,8 +33,15 @@ class AuthController extends Zend_Controller_Action
                 
                 if ($authResult->getCode() == 1) {
                     $userRow = $adapter->getResultRowObject();
-                    $auth->getStorage()->write($userRow);
+                    
+                    $user = new Core_Model_User();
+                    $user->setUserId($userRow->user_id);
+                    $user->setRoleId($userRow->role_id);
+                    $user->setUserLogin($userRow->user_login);
+                    
+                    $auth->getStorage()->write($user);
                 }
+                $this->_redirect('/index/index');
             }
         } 
         
@@ -44,6 +51,6 @@ class AuthController extends Zend_Controller_Action
     public function logoutAction()
     {
         Zend_Auth::getInstance()->clearIdentity();
-        $this->_redirect('/');
+        $this->_redirect('/login.html');
     }
 }
